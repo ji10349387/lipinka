@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>礼品卡查询</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://example.com/background.jpg'); /* 替换为你的背景图片URL */
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        select:focus, input[type="text"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+        button {
+            padding: 15px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: block;
+            background-image: url('https://example.com/card-icon.png'); /* 替换为你的图标URL */
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon"></div>
+        <h1>礼品卡查询</h1>
+        <p>请选择卡类型并输入您的18位卡密：</p>
+        <select id="cardType">
+            <option value="京东e卡">京东e卡</option>
+            <option value="天猫超市卡">天猫超市卡</option>
+        </select>
+        <input type="text" id="cardCode" placeholder="请输入18位卡密">
+        <button onclick="checkCard()">查询</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function checkCard() {
+            const cardType = document.getElementById('cardType').value;
+            const cardCode = document.getElementById('cardCode').value;
+            const resultElement = document.getElementById('result');
+
+            if(cardCode.length === 18 && /^[A-Za-z0-9]+$/.test(cardCode)) {
+                resultElement.textContent = `您查询的${cardType}是全新未绑定的卡片。`;
+                resultElement.style.color = 'green';
+            } else {
+                resultElement.textContent = '请输入有效的18位卡密（由数字和字母组成）';
+                resultElement.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>
